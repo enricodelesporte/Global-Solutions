@@ -96,6 +96,10 @@ def cadastro():
 #Login do Usuário
 def login():
     global usuarioLogado
+
+    if not Usuario:
+        print("Nenhum usuário registrado. Fazer cadastro.")
+        return
     
     logado = False
     while not logado:
@@ -112,8 +116,26 @@ def login():
             print(f"Bem-vindo de volta, {usuarioLogado.nome}!")
             logado = True
         else:
-            print("Email ou senha incorretos! Tente novamente.")
-    
+            print("Email ou senha incorretos! Tente novamente ou faça seu cadastro. \n(1)Tentar novamente\n(2)Fazer cadastro")
+            opcao = input().strip()
+            if opcao == "1":
+                continue
+            else: 
+                return cadastro()
 
+def criarMochila():
+    if not usuarioLogado:
+         print("Nenhum usuário cadastrado. Fazer login.")
+         return
+
+    print("----Criar Mochila----")
+    nome = input("Nome da mochila: ").strip()
+    categoria = input("Categoria: ").strip()
+    descricao = "Mochila de sobrevivência contra desastres ambietais, nela contém os itens necessários para ficar bem até a chegada dos socorros."
+   
+    mochila = MochilaSobrevivencia(nome, descricao, categoria)
+    mochilas.append(mochila)
+
+    print(f"\nNome da mochila: {nome} \nDescrição: {descricao} \nCategoria: {categoria}")
 
 menuPrincipal()
