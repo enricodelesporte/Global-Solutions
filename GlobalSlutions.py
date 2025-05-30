@@ -60,8 +60,7 @@ def menuPrincipal():
 #Cadastro do usuário
 def cadastro():
     print("\n----Cadastro----")
-    print ("Qual seu nome completo:")
-    nome = input().strip()
+    nome = input("Qual seu nome completo:").strip()
 
     #Verificação se o campo está preenchido
     while not nome: 
@@ -74,8 +73,7 @@ def cadastro():
     #Verificação para saber se o email está correto
     while not email or "@" not in email or "." not in email:
         print("Email está inválido")
-        print("Email: ")
-        email = input().strip()
+        email = input("Email: ").strip()
 
     print("Digite sua senha: ")
     senha = input().strip()
@@ -91,11 +89,31 @@ def cadastro():
             return
     
     #Adicionando usuário na lista de Usuários 
-    usuario = {"nome": nome, "email": email, "senha": senha}
+    usuario = Usuario(nome, email, senha)
     usuarios.append(usuario)
     print(f"Usuário {nome} cadastrado com sucesso!")
 
+#Login do Usuário
+def login():
+    global usuarioLogado
+    
+    logado = False
+    while not logado:
+        print("\n----Login----")
+        email = input("Email: ").strip()
+        senha = input("Senha: ").strip()
 
+        #Procura o usuário
+        usuarioFiltrado = list(filter(lambda u: u.email == email and u.senha == senha, usuarios))
+
+        #Válida as informações
+        if usuarioFiltrado:
+            usuarioLogado = usuarioFiltrado[0]
+            print(f"Bem-vindo de volta, {usuarioLogado.nome}!")
+            logado = True
+        else:
+            print("Email ou senha incorretos! Tente novamente.")
+    
 
 
 menuPrincipal()

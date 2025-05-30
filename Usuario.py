@@ -9,6 +9,4 @@ class Usuario:
     #Exibição do nome e email do Usuário
     def __str__(self):
         return f"Usuário: {self.nome} | Email: {self.email}"
-
-
-
+    
