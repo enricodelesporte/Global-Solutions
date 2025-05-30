@@ -60,23 +60,21 @@ def menuPrincipal():
 #Cadastro do usuário
 def cadastro():
     print("\n----Cadastro----")
-    nome = input("Qual seu nome completo:").strip()
+    nome = input("Qual seu nome completo: ").strip()
 
     #Verificação se o campo está preenchido
     while not nome: 
         print("Esse campo deve ser preenchido")
         nome = input().strip()
 
-    print("Qual seu email: ")
-    email = input().strip()
+    email = input("Qual seu email: ").strip()
 
     #Verificação para saber se o email está correto
     while not email or "@" not in email or "." not in email:
         print("Email está inválido")
         email = input("Email: ").strip()
 
-    print("Digite sua senha: ")
-    senha = input().strip()
+    senha = input("Digite sua senha: ").strip()
 
     #Validação da senha do usuário
     while not senha or len(senha) < 5:
@@ -120,8 +118,12 @@ def login():
             opcao = input().strip()
             if opcao == "1":
                 continue
-            else: 
+            elif opcao == "2":
                 return cadastro()
+            else: 
+                print("Valor inválido! Tente novamente")
+                continue
+                
 
 def criarMochila():
     if not usuarioLogado:
@@ -138,4 +140,29 @@ def criarMochila():
 
     print(f"\nNome da mochila: {nome} \nDescrição: {descricao} \nCategoria: {categoria}")
 
+def minhaMochila():
+
+    print("----Minha Mochila----")
+    if not usuarioLogado:
+        print("Nenhu usuário encontrado! Fazer login.")
+    elif not mochilas:
+        print("Nenhuma mochila criada.")
+    else:
+        for i, mochila in enumerate(mochilas, start= 1):
+            print(f"{i}. Mochila: {mochila.nome} Categoria: {mochila.categoria}")
+
+def contatoEmergenia():
+    print("----Contato de Emergência----")
+    print("Qual emergência você precisa: \n(1)Ambulância \n(2)Bombeiro \n(3)Polícia")
+    opcao = input().strip()
+
+    if opcao == "1":
+        print("Para chamar uma ambulância ligue para 192")
+    elif opcao == "2":
+        print("Para chamar os bombeiros ligue para 193")
+    elif opcao == "3":
+        print("Pra chamar a polícia ligue para 190") 
+    else:
+        print("Valor inválido! Tente novamente.")
+        contatoEmergenia()
 menuPrincipal()
