@@ -51,7 +51,7 @@ def menuPrincipal():
             contatoEmergenia()
 
         elif (opcao == 6):
-            suport()
+            suporte()
 
         elif (opcao == 7):
             print("Obrigado por contar a Safe Bag, espero te ver em breve!!")
@@ -165,4 +165,17 @@ def contatoEmergenia():
     else:
         print("Valor inválido! Tente novamente.")
         contatoEmergenia()
+
+def suporte():
+    print("----Suporte----")
+    if not usuarioLogado:
+        print("Nenhum usuário encontrado.Fazer login")
+        return
+
+    problema = input("Descreva seu problema: ").strip()
+    if problema:
+        print("Sua mensagem foi enviada para nosso suporte")
+    else: 
+        print("Este campo está vázio. Preencha corretamente.")
+
 menuPrincipal()
