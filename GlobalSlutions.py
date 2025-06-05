@@ -21,7 +21,7 @@ def menuPrincipal():
         print("2. Login")
         print("3. Criar Mochila")
         print("4. Minha Mochila")
-        print("5. Contao de Emergência")
+        print("5. Contato de Emergência")
         print("6. Suporte")
         print("7. Sair")
 
